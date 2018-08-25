@@ -21,6 +21,7 @@ function getCompilerSettings(entryPoint) {
 		// dependency_mode: 'STRICT',
 		output_wrapper: '(function(){\n%output%\n}).call(this)',
 		js_output_file: 'bundle.js',
+		externs: `${srcFolder}/externs.js`,
 	};
 }
 
@@ -30,7 +31,7 @@ gulp.task('copyHtml', function () {
 });
 
 gulp.task('generate-js', function (cb) {
-	exec(`tsickle -- --outDir ${srcFolder}`, cb);
+	exec(`tsickle --externs=${srcFolder}/externs.js -- --outDir ${srcFolder}`, cb);
 });
 
 gulp.task('default', ['copyHtml', 'generate-js'], () => {
