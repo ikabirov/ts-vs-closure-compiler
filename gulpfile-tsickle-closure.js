@@ -26,7 +26,7 @@ function getCompilerSettings(entryPoint) {
 }
 
 gulp.task('copyHtml', function () {
-	return gulp.src('src/*.html')
+	return gulp.src(['src/*.html', 'src/*.css'])
 		.pipe(gulp.dest(distFolder));
 });
 
