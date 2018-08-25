@@ -5,14 +5,11 @@ const tsify = require('tsify');
 const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
 const buffer = require('vinyl-buffer');
-const paths = {
-	pages: ['src/*.html']
-};
 
 const distFolder = 'dist/ts';
 
 gulp.task('copyHtml', function () {
-	return gulp.src(paths.pages)
+	return gulp.src('src/*.html')
 		.pipe(gulp.dest(distFolder));
 });
 

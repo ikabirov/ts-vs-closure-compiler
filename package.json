@@ -23,6 +23,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "google-closure-compiler": "^20180506.0.0"
+    "google-closure-compiler": "^20180506.0.0",
+    "gulp-string-replace": "^1.1.1"
   }
 }

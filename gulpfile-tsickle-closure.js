@@ -1,19 +1,10 @@
 const gulp = require('gulp');
 const path = require('path');
+const exec = require('child_process').exec;
 const closureCompiler = require('google-closure-compiler').gulp();
 
-const srcFolder = 'src-js';
-const distFolder = 'dist/closure';
-
-const defaultSettings = {
-	js: path.join(__dirname, './src/**.js'),
-	compilation_level: 'ADVANCED',
-	warning_level: 'VERBOSE',
-	language_in: 'ECMASCRIPT_NEXT',
-	language_out: 'ECMASCRIPT5_STRICT',
-	dependency_mode: 'STRICT',
-	output_wrapper: '(function(){\n%output%\n}).call(this)',
-};
+const srcFolder = 'src-js-tsickle';
+const distFolder = 'dist/closure-tsickle';
 
 /**
  * @param {string} entryPoint
@@ -38,7 +29,11 @@ gulp.task('copyHtml', function () {
 		.pipe(gulp.dest(distFolder));
 });
 
-gulp.task('default', ['copyHtml'], () => {
+gulp.task('generate-js', function (cb) {
+	exec(`tsickle -- --outDir ${srcFolder}`, cb);
+});
+
+gulp.task('default', ['copyHtml', 'generate-js'], () => {
 	return closureCompiler(
 			getCompilerSettings('main.js')
 		)
