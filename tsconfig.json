@@ -3,8 +3,8 @@
     "src/main.ts"
   ],
   "compilerOptions": {
-//    "module": "commonjs",
-    "noImplicitAny": true,
+    "module": "commonjs",
+//    "noImplicitAny": true,
     "target": "es2015"
   },
   "include": ["src"]
